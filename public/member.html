@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Anggota — LORD</title>
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/animation.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/darkmode.css">
+</head>
+<body>
+
+<div class="field-bg"></div>
+<div class="particles"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/index.html" class="brand">
+      <img src="/assets/logo.svg" alt="" class="logo-mark">
+      <span>LO<span class="accent">RD</span></span>
+    </a>
+    <nav class="main-nav" id="site-nav"></nav>
+    <div class="header-actions">
+      <a href="/register.html" class="btn btn-primary">Join Squad</a>
+      <button class="nav-toggle" id="nav-toggle"></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="block">
+    <div class="container" style="max-width:720px;">
+      <div id="member-detail">
+        <div class="card" style="padding:40px;text-align:center;color:var(--text-muted);">Memuat detail anggota...</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="/js/icons.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/member.js"></script>
+<script src="/js/animation.js"></script>
+<script>
+initApp('/members.html');
+initMemberDetailPage();
+</script>
+</body>
+</html>
