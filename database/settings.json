@@ -1,0 +1,57 @@
+{
+  "clanName": "LORD",
+  "tagline": "Community Portal untuk Pemain Game Sepak Bola Online",
+  "founded": "2024",
+  "rules": [
+    "Hormati sesama anggota di setiap kanal komunitas.",
+    "Dilarang toxic, spam, atau flaming di activity feed.",
+    "Isi posisi player dengan jujur sesuai gaya main kamu.",
+    "Hadir tepat waktu di jadwal mabar yang sudah ditentukan.",
+    "Laporkan bug atau masalah lewat kanal support, bukan drama publik.",
+    "Jaga nama baik LORD di setiap match dan platform lain."
+  ],
+  "faq": [
+    {
+      "question": "Apa itu LORD?",
+      "answer": "LORD adalah portal komunitas untuk pemain game sepak bola online 4vs4. Bukan klub sepak bola sungguhan, ini adalah ruang kumpul, statistik, dan jadwal mabar untuk squad kita."
+    },
+    {
+      "question": "Bagaimana cara bergabung?",
+      "answer": "Klik Join Squad di halaman utama, isi nickname dan pilih posisi favorit kamu: CB, CM, WF, atau ST."
+    },
+    {
+      "question": "Apakah harus bayar untuk bergabung?",
+      "answer": "Tidak. Bergabung dengan LORD sepenuhnya gratis untuk semua pemain."
+    },
+    {
+      "question": "Apa fungsi ID Card digital?",
+      "answer": "ID Card adalah kartu anggota digital dengan QR code unik yang menampilkan identitas dan posisi kamu di komunitas."
+    }
+  ],
+  "schedule": [
+    {
+      "day": "Senin",
+      "time": "20:00 - 22:00",
+      "mode": "Ranked Squad",
+      "slots": 8
+    },
+    {
+      "day": "Rabu",
+      "time": "20:00 - 22:00",
+      "mode": "Scrim Latihan",
+      "slots": 10
+    },
+    {
+      "day": "Jumat",
+      "time": "21:00 - 23:30",
+      "mode": "Tournament Practice",
+      "slots": 12
+    },
+    {
+      "day": "Minggu",
+      "time": "15:00 - 18:00",
+      "mode": "Casual Mabar",
+      "slots": 16
+    }
+  ]
+}
