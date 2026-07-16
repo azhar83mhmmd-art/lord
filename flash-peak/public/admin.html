@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — LORD</title>
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/animation.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/darkmode.css">
+</head>
+<body>
+
+<div class="field-bg"></div>
+<div class="particles"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/index.html" class="brand">
+      <img src="/assets/logo.svg" alt="" class="logo-mark">
+      <span>LO<span class="accent">RD</span></span>
+    </a>
+    <nav class="main-nav" id="site-nav"></nav>
+    <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle"></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="block" style="padding-bottom:0;">
+    <div class="container">
+      <span class="eyebrow">Restricted Area</span>
+      <h1 class="section-title" style="font-size:clamp(26px,4vw,38px);">Admin Panel</h1>
+      <p class="section-sub">Ringkasan komunitas dan pengelolaan anggota LORD.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="stats-grid" id="admin-stats-grid" style="margin-bottom:36px;">
+        <div class="card" style="padding:40px;text-align:center;color:var(--text-muted);grid-column:1/-1;">Memuat data admin...</div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Kelola</span>
+          <h2 class="section-title" style="font-size:22px;">Daftar Anggota</h2>
+        </div>
+      </div>
+
+      <div class="card" style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;min-width:640px;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border-soft);text-align:left;">
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">MEMBER ID</th>
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">USERNAME</th>
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">GAME ID</th>
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">WHATSAPP</th>
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">POSISI</th>
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">STATUS</th>
+              <th style="padding:14px 18px;font-size:12.5px;color:var(--text-muted);font-weight:600;">AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="admin-member-table"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="/js/icons.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/animation.js"></script>
+<script>
+initApp('/admin.html');
+
+async function loadAdmin() {
+  try {
+    const [overview, members] = await Promise.all([API.adminOverview(), API.getMembers()]);
+    const stats = overview.stats;
+
+    document.getElementById('admin-stats-grid').innerHTML = `
+      <div class="card stat-card c-blue">
+        <div class="stat-icon">${ICONS.member}</div>
+        <div class="stat-value">${stats.totalMembers}</div>
+        <div class="stat-label">Total Anggota</div>
+      </div>
+      <div class="card stat-card c-green">
+        <div class="stat-icon">${ICONS.activity}</div>
+        <div class="stat-value">${stats.onlineMembers}</div>
+        <div class="stat-label">Online Sekarang</div>
+      </div>
+      <div class="card stat-card c-gold">
+        <div class="stat-icon">${ICONS.userPlus}</div>
+        <div class="stat-value">${stats.newMembersToday}</div>
+        <div class="stat-label">Anggota Baru Hari Ini</div>
+      </div>
+      <div class="card stat-card c-danger">
+        <div class="stat-icon">${ICONS.trending}</div>
+        <div class="stat-value">${stats.activityToday}</div>
+        <div class="stat-label">Activity Hari Ini</div>
+      </div>
+    `;
+
+    renderTable(members);
+  } catch (err) {
+    console.error(err);
+    showToast('Gagal memuat data admin.');
+  }
+}
+
+function renderTable(members) {
+  const tbody = document.getElementById('admin-member-table');
+
+  if (!members.length) {
+    tbody.innerHTML = `
+      <tr><td colspan="7" style="padding:32px;text-align:center;color:var(--text-muted);">Belum ada anggota terdaftar.</td></tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = members.map(m => `
+    <tr style="border-bottom:1px solid var(--border-soft);" data-row="${m.memberId}">
+      <td style="padding:14px 18px;font-family:var(--font-mono);font-size:13px;color:var(--text-secondary);">${m.memberId}</td>
+      <td style="padding:14px 18px;font-weight:600;">${escapeHtml(m.username || m.nickname)}</td>
+      <td style="padding:14px 18px;font-family:var(--font-mono);font-size:13px;color:var(--text-secondary);">${escapeHtml(m.gameId || '—')}</td>
+      <td style="padding:14px 18px;font-family:var(--font-mono);font-size:13px;color:var(--text-secondary);">${escapeHtml(m.whatsapp || '—')}</td>
+      <td style="padding:14px 18px;"><span class="badge badge-${m.position.toLowerCase()}">${m.position}</span></td>
+      <td style="padding:14px 18px;"><span class="status-dot status-${m.status}"></span> <span style="font-size:13px;color:var(--text-secondary);text-transform:capitalize;">${m.status}</span></td>
+      <td style="padding:14px 18px;">
+        <button class="btn btn-ghost" style="padding:6px 12px;font-size:12.5px;" data-delete="${m.memberId}">Hapus</button>
+      </td>
+    </tr>
+  `).join('');
+
+  tbody.querySelectorAll('[data-delete]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.delete;
+      if (!confirm(`Hapus anggota ${id}?`)) return;
+      try {
+        await API.deleteMember(id);
+        showToast('Anggota berhasil dihapus.');
+        loadAdmin();
+      } catch (err) {
+        showToast(err.message);
+      }
+    });
+  });
+}
+
+loadAdmin();
+</script>
+</body>
+</html>
