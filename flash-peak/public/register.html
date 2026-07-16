@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join LORD Community</title>
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/animation.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/darkmode.css">
+</head>
+<body>
+
+<div class="field-bg"></div>
+<div class="particles"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/index.html" class="brand">
+      <img src="/assets/logo.svg" alt="" class="logo-mark">
+      <span>LO<span class="accent">RD</span></span>
+    </a>
+    <nav class="main-nav" id="site-nav"></nav>
+    <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle"></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="register-wrap">
+    <div class="container register-grid">
+      <div class="register-side">
+        <span class="eyebrow">Player Registration</span>
+        <h2>Join LORD <span class="text-gradient">Community</span></h2>
+        <p>Bergabunglah bersama squad dan jadilah bagian dari tim.</p>
+        <div class="perk-list">
+          <div class="perk-item">
+            <span class="perk-icon" data-icon="check"></span>
+            ID Card digital dengan QR code unik
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon" data-icon="check"></span>
+            Akses jadwal mabar mingguan
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon" data-icon="check"></span>
+            Muncul di Community Feed dan Leaderboard
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon" data-icon="check"></span>
+            Gratis, tanpa biaya pendaftaran
+          </div>
+        </div>
+      </div>
+
+      <div class="card register-form-card">
+        <form id="register-form">
+          <div class="form-group">
+            <label class="form-label" for="fullname-input">Nama Lengkap</label>
+            <input type="text" id="fullname-input" class="form-input" placeholder="Contoh: Muhammad Azhar" maxlength="40" required>
+            <div class="form-error" id="fullname-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="age-input">Usia</label>
+            <input type="number" id="age-input" class="form-input" placeholder="Contoh: 19" min="10" max="80" required>
+            <div class="form-error" id="age-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameid-input">ID Game</label>
+            <input type="text" id="gameid-input" class="form-input" placeholder="Contoh: 123456789" maxlength="30" required>
+            <div class="form-hint">ID akun game sepak bola online kamu.</div>
+            <div class="form-error" id="gameid-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="username-input">Username</label>
+            <input type="text" id="username-input" class="form-input" placeholder="Contoh: Azhar" maxlength="20" required>
+            <div class="form-hint">Nama ini akan tampil di ID Card dan Community Feed.</div>
+            <div class="form-error" id="username-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pilih Posisi</label>
+            <div class="position-select">
+              <div class="position-option" data-position="CB">
+                <span data-icon="posCB"></span>
+                <div class="po-code">CB</div>
+                <div class="po-name">Center Back</div>
+              </div>
+              <div class="position-option" data-position="CM">
+                <span data-icon="posCM"></span>
+                <div class="po-code">CM</div>
+                <div class="po-name">Center Mid</div>
+              </div>
+              <div class="position-option" data-position="WF">
+                <span data-icon="posWF"></span>
+                <div class="po-code">WF</div>
+                <div class="po-name">Wing Forward</div>
+              </div>
+              <div class="position-option" data-position="ST">
+                <span data-icon="posST"></span>
+                <div class="po-code">ST</div>
+                <div class="po-name">Striker</div>
+              </div>
+            </div>
+            <div class="form-error" id="position-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="whatsapp-input">Nomor WhatsApp</label>
+            <input type="tel" id="whatsapp-input" class="form-input" placeholder="Contoh: 081234567890" maxlength="16" required>
+            <div class="form-hint">Dipakai untuk verifikasi keanggotaan, tidak ditampilkan di ID Card.</div>
+            <div class="form-error" id="whatsapp-error"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <span data-icon="register"></span> Daftar Sekarang
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="/js/icons.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/register.js"></script>
+<script src="/js/animation.js"></script>
+<script>
+initApp('/register.html');
+initRegisterForm();
+</script>
+</body>
+</html>
