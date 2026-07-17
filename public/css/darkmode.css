@@ -1,0 +1,10 @@
+/* LORD is dark-native (AMOLED-friendly esports theme).
+   This file exists for a future light/contrast toggle without
+   restructuring the core stylesheet. Currently a no-op layer. */
+
+body.contrast-mode {
+  --bg-panel: #0B1220;
+  --bg-panel-raised: #101A2E;
+  --border-soft: rgba(148, 163, 184, 0.22);
+  --border-strong: rgba(148, 163, 184, 0.4);
+}
