@@ -1,0 +1,10 @@
+{
+  "name": "lord-community",
+  "version": "1.0.0",
+  "description": "Portal Komunitas Game LORD — sepak bola online 4vs4 (Vercel + Supabase)",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "qrcode": "^1.5.3"
+  }
+}
