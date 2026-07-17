@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rules — LORD</title>
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/animation.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/darkmode.css">
+</head>
+<body>
+
+<div class="field-bg"></div>
+<div class="particles"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/index.html" class="brand">
+      <img src="/assets/logo.svg" alt="" class="logo-mark">
+      <span>LO<span class="accent">RD</span></span>
+    </a>
+    <nav class="main-nav" id="site-nav"></nav>
+    <div class="header-actions">
+      <a href="/register.html" class="btn btn-primary">Join Squad</a>
+      <button class="nav-toggle" id="nav-toggle"></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="block" style="padding-bottom:0;">
+    <div class="container">
+      <span class="eyebrow">Kode Etik Komunitas</span>
+      <h1 class="section-title" style="font-size:clamp(26px,4vw,38px);">Rules</h1>
+      <p class="section-sub">Aturan dasar supaya squad LORD tetap solid, sehat, dan seru untuk semua orang.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="rules-grid" id="full-rules-grid">
+        <div class="card" style="padding:40px;text-align:center;color:var(--text-muted);grid-column:1/-1;">Memuat rules...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Sering Ditanyakan</span>
+          <h2 class="section-title">FAQ</h2>
+        </div>
+      </div>
+      <div class="faq-list" id="full-faq-list" style="max-width:760px;"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="/js/icons.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/animation.js"></script>
+<script>
+initApp('/rules.html');
+
+async function loadRulesPage() {
+  try {
+    const settings = await API.getSettings();
+
+    document.getElementById('full-rules-grid').innerHTML = settings.rules.map((r, i) => `
+      <div class="card rule-card">
+        <span class="rule-index">${String(i + 1).padStart(2, '0')}</span>
+        <p>${r}</p>
+      </div>
+    `).join('');
+
+    document.getElementById('full-faq-list').innerHTML = settings.faq.map((f, i) => `
+      <div class="card faq-item" data-idx="${i}">
+        <button class="faq-question">
+          <span>${f.question}</span>
+          ${ICONS.chevronDown}
+        </button>
+        <div class="faq-answer"><p>${f.answer}</p></div>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.faq-item').classList.toggle('open'));
+    });
+  } catch (err) {
+    console.error(err);
+    showToast('Gagal memuat rules.');
+  }
+}
+
+loadRulesPage();
+</script>
+</body>
+</html>
